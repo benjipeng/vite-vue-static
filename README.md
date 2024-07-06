@@ -1,5 +1,25 @@
 # Vue 3 + Vite
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+`pnpm` is used as a package mgr.
 
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
+refer to `.github/workflows/gh-pages.yml`
+
+```yaml
+steps:
+  - name: Checkout
+    uses: actions/checkout@v4
+  - uses: pnpm/action-setup@v4
+    with:
+      version: 8
+  - name: Set up Node
+    uses: actions/setup-node@v4
+    with:
+      node-version: 20
+      cache: "pnpm"
+  - name: Setup pnpm
+    run: npm install -g pnpm
+  - name: Install dependencies
+    run: pnpm install --frozen-lockfile
+  - name: Build
+    run: pnpm run build
+```
